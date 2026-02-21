@@ -1,0 +1,157 @@
+<!-- Dedicated to God the Father -->
+<!-- All Rights Reserved Christopher Andrew Topalian Copyright 2000-2026 -->
+<!-- https://github.com/ChristopherTopalian -->
+<!-- https://github.com/ChristopherAndrewTopalian -->
+<!-- CATopalian_JavaScript_Space_Weather_Data_Center.html-->
+
+<!DOCTYPE html>
+<html lang = 'en'>
+<head>
+<title> CATopalian JavaScript Space Weather Data Center </title>
+
+<meta charset = 'UTF-8'>
+
+<meta name = 'viewport' content = 'width = device-width, initial-scale = 1.0'>
+
+<style>
+
+body
+{
+    background-color: rgb(30, 30, 30);
+    color: rgb(255, 255, 255); 
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+button
+{
+    background-color: rgb(0, 77, 129);
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(100, 100, 255);
+    border-radius: 4px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    opacity: 1.0;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    cursor: pointer;
+}
+
+button:hover
+{
+    background-color: rgb(6, 31, 47);
+    border-color: rgb(0, 255, 255);
+    color: rgb(0, 255, 255);
+}
+
+button:active
+{
+    position: relative;
+    top: 1px;
+    color: rgb(255, 0, 255);
+}
+
+#theTextDiv
+{
+    margin-top: 5px;
+    /* white-space pre-wrap keeps the formatting if we use newlines */
+    white-space: pre-wrap;
+    border: 1px solid rgb(100, 100, 100);
+    padding: 10px;
+    font-family: monospace;
+    height: 250px;
+    overflow: auto;
+}
+
+</style>
+
+<script src = 'fetchXrayData.js'></script>
+
+<script>
+
+// shortcuts.js
+
+function ge(whichId)
+{
+    let result = document.getElementById(whichId);
+    return result;
+}
+
+function ce(whichType)
+{
+    let result = document.createElement(whichType);
+    return result;
+}
+
+function ba(whichElement)
+{
+    let result = document.body.append(whichElement);
+}
+
+function cl(whichMessage)
+{
+    console.log(whichMessage);
+}
+
+//----//
+
+function makeInterface()
+{
+    let xrayFlux = ce('div');
+    xrayFlux.textContent = 'X-RAY FLUX';
+    xrayFlux.style.fontSize = "20px";
+    ba(xrayFlux);
+
+    //-//
+
+    let fetchDataBtn = ce('button');
+    fetchDataBtn.textContent = 'Get X-Ray Data';
+    
+    // the click function must be ASYNC because showXrayData is async
+    fetchDataBtn.onclick = async function() 
+    {
+        // we need to call fetchXrayData() directly to get the object.
+        let data = await fetchXrayData(); 
+        
+        let report = '';
+
+        for (let x = 0; x < data.length; x++)
+        {
+            // format the string for the display
+            report += 
+            'Time: ' +
+            data[x].time_tag + '\n' +
+            'Flux: ' + data[x].flux + '\n' + 'Energy: ' + data[x].energy + '\n\n';
+        }
+        
+        ge('theTextDiv').textContent = report;
+    };
+    ba(fetchDataBtn);
+
+    //-//
+    
+    let theTextDiv = ce('div');
+    theTextDiv.id = 'theTextDiv';
+    ba(theTextDiv);
+}
+
+</script>
+
+</head>
+
+<body onload = 'makeInterface();'>
+
+</body>
+
+</html>
+

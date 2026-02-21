@@ -1,0 +1,171 @@
+<!-- Dedicated to God the Father -->
+<!-- All Rights Reserved Christopher Andrew Topalian Copyright 2000-2026 -->
+<!-- https://github.com/ChristopherTopalian -->
+<!-- https://github.com/ChristopherAndrewTopalian -->
+<!-- CATopalian_JavaScript_Space_Weather_Data_Center.html -->
+
+<html>
+<head>
+<title> CATopalian JavaScript Space Weather Data Center </title>
+
+<meta charset = 'UTF-8'>
+
+<meta name = 'viewport' content = 'width = device-width, initial-scale = 1.0'>
+
+<link rel = "icon" href = "src/media/textures/icons/CATopalian_True_AI_Centered.png" type = "image/png">
+
+<link rel = 'stylesheet' href = 'src/css/style001.css'>
+
+<script src = 'src/js/sound/sound.js'></script>
+
+<script>
+
+// shortcuts.js
+
+function ge(whichId)
+{
+    let result = document.getElementById(whichId);
+    return result;
+}
+
+function ce(whichType)
+{
+    let result = document.createElement(whichType);
+    return result;
+}
+
+function ba(whichElement)
+{
+    let result = document.body.append(whichElement);
+    return result;
+}
+
+function cl(whichMessage)
+{
+    let result = console.log(whichMessage);
+    return result;
+}
+
+function ct(whichText)
+{
+    let result = document.createTextNode(whichText);
+    return result;
+}
+
+function gr(whichId)
+{
+    let result =  ge(whichId).getBoundingClientRect();
+    return result;
+}
+
+//----//
+
+function makeInterface()
+{
+    let titleAndLink = ce('a');
+    titleAndLink.href = 'https://github.com/ChristopherAndrewTopalian/CATopalian_JavaScript_Space_Weather_Data_Center';
+    titleAndLink.target = '_blank';
+    titleAndLink.style.fontFamily = 'Arial';
+    titleAndLink.style.fontWeight = 'bold';
+    titleAndLink.textContent = 'CATopalian JavaScript Space Weather Data Center';
+    titleAndLink.style.fontSize = '14px';
+    titleAndLink.style.textDecoration = 'none';
+    titleAndLink.style.color = 'rgb(0, 255, 255)';
+    titleAndLink.style.lineHeight = '12px';
+    ba(titleAndLink);
+    
+    //-//
+
+    let mainDiv = ce('div');
+    mainDiv.style.display = 'flex';
+    mainDiv.style.flexDirection = 'row';
+    mainDiv.style.marginTop = 10 + 'px';
+    mainDiv.style.gap = '4px';
+    ba(mainDiv);
+
+    //-//
+
+    let xrayPages = [
+    {
+        name: '001',
+        url: 'src/html/x-ray/001/CATopalian_JavaScript_Space_Weather_Data_Center.html',
+    },
+    
+    {
+        name: '002',
+        url: 'src/html/x-ray/002/CATopalian_JavaScript_Space_Weather_Data_Center.html',
+    },
+    
+    {
+        name: '003',
+        url: 'src/html/x-ray/003/CATopalian_JavaScript_Space_Weather_Data_Center.html',
+    },
+    
+    {
+        name: '004',
+        url: 'src/html/x-ray/004/CATopalian_JavaScript_Space_Weather_Data_Center.html',
+    }
+    
+    ];
+    
+    //-//
+    
+    let xrayDetails = ce('details');
+    mainDiv.append(xrayDetails);
+    
+    let xraySummary = ce('summary');
+    xraySummary.textContent = 'X-RAY';
+    xrayDetails.append(xraySummary);
+    
+    //-//
+    
+    let xrayBtnContainer = ce('div');
+    xrayBtnContainer.style.border = 'solid 1px rgb(100, 100, 100)';
+    xrayBtnContainer.style.display = 'flex';
+    xrayBtnContainer.style.flexDirection = 'column';
+    xrayDetails.append(xrayBtnContainer);
+    
+    for (let x = 0; x < xrayPages.length; x++)
+    {
+        let pageBtn = ce('button');
+        pageBtn.onmouseover = function()
+        {
+            hoverSound();
+        };
+        pageBtn.onclick = function()
+        {
+            clickSound();
+            ge('theFrame').src = xrayPages[x].url;
+        };
+        pageBtn.textContent = xrayPages[x].name;
+        pageBtn.style.fontSize = 15 + 'px';
+        pageBtn.style.fontWeight = 'bold';
+        pageBtn.style.alignSelf = 'flex-start';
+        xrayBtnContainer.append(pageBtn);
+    }
+    
+    //-//
+    
+    let theFrame = ce('iframe');
+    theFrame.style.width = '400px';
+    theFrame.style.height = '300px';
+    theFrame.id = 'theFrame';
+    theFrame.src = xrayPages[0].url;
+    mainDiv.append(theFrame);
+}
+
+function whenLoaded()
+{
+    makeInterface();
+}
+
+</script>
+
+</head>
+
+<body onload = 'whenLoaded();'>
+
+</body>
+
+</html>
+

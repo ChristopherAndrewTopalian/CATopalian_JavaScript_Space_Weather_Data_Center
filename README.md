@@ -3,6 +3,10 @@ This JavaScript app teaches incrementally how to fetch Space weather data and ho
 
 ---
 
+Video: https://www.youtube.com/watch?v=AN8-o4M1Xw8
+
+Use App: https://christopherandrewtopalian.github.io/CATopalian_JavaScript_Space_Weather_Data_Center/CATopalian_JavaScript_Space_Weather_Data_Center.html
+
 ![001](src/media/textures/screenshots/001.PNG)
 
 ![002](src/media/textures/screenshots/002.PNG)
